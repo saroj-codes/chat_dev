@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator zod {
+  provider                         = "npx zod-prisma-types"
+  output                           = "./_generated_"
+  useMultipleFiles                 = false
+  writeBarrelFiles                 = false
+  createInputTypes                 = false
+  // writeNullishInModelTypes         = false
+  addInputTypeValidation           = false
+  addIncludeType                   = false
+  addSelectType                    = false
+  validateWhereUniqueInput         = true
+  createOptionalDefaultValuesTypes = false
+  createRelationValuesTypes        = false
+  createPartialTypes               = false
+  useDefaultValidators             = false
+  coerceDate                       = true
+}
+
+model User {
+  id         String    @id @default(cuid()) @map("_id")
+  user_name  String /// @zod.string.min(2, { message: "must be at least 2 characters" }).max(256, { message: "must be at most 256 characters" }).trim()
+  email      String    @unique /// @zod.string.email().min(2, { message: "must be at least 2 characters" }).max(256, { message: "must be at most 256 characters" }).trim()
+  password   String /// @zod.string.min(2, { message: "must be at least 2 characters" }).max(10, { message: "must be at most 10 characters" }).trim()
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt()
+  Channel    Channel[]
+  Message    Message[]
+
+  @@map("users")
+}
+
+model Channel {
+  id                         String    @id @default(cuid()) @map("_id")
+  user                       User      @relation(fields: [creator], references: [id])
+  creator                    String
+  name                       String /// @zod.string.min(2, { message: "must be at least 2 characters" }).max(256, { message: "must be at most 256 characters" }).trim()
+  isPublic                   Boolean
+  max_number_of_participants Int
+  created_at                 DateTime  @default(now())
+  updated_at                 DateTime  @updatedAt()
+  Message                    Message[]
+  // ChannelParticipant         ChannelParticipant[]
+
+  @@map("channels")
+}
+
+model Message {
+  id         String   @id @default(cuid()) @map("_id")
+  channel    Channel  @relation(fields: [channel_id], references: [id])
+  channel_id String
+  content    String /// @zod.string.min(2, { message: "must be at least 2 characters" }).max(256, { message: "must be at most 256 characters" }).trim()
+  user       User     @relation(fields: [sender_id], references: [id])
+  sender_id  String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+
+  @@map("messages")
+}
+
+// model ChannelParticipant {
+//   id         String   @id @default(cuid()) @map("_id")
+//   user_id    String
+//   channel    Channel  @relation(fields: [channel_id], references: [id])
+//   channel_id String
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt()
+
+//   @@map("channelparticipants")
+// }
