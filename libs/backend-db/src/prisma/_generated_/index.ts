@@ -12,7 +12,7 @@ import type { Prisma } from '@prisma/client';
 
 export const UserScalarFieldEnumSchema = z.enum(['id','user_name','email','password','created_at','updated_at']);
 
-export const ChannelScalarFieldEnumSchema = z.enum(['id','creator','name','isPublic','max_number_of_participants','created_at','updated_at']);
+export const ChannelScalarFieldEnumSchema = z.enum(['id','creator_Id','name','isPublic','max_number_of_participants','created_at','updated_at']);
 
 export const MessageScalarFieldEnumSchema = z.enum(['id','channel_id','content','sender_id','created_at','updated_at']);
 
@@ -44,7 +44,7 @@ export type User = z.infer<typeof UserSchema>
 
 export const ChannelSchema = z.object({
   id: z.string(),
-  creator: z.string(),
+  creator_Id: z.string(),
   name: z.string().min(2, { message: "must be at least 2 characters" }).max(256, { message: "must be at most 256 characters" }).trim(),
   isPublic: z.boolean(),
   max_number_of_participants: z.number(),
