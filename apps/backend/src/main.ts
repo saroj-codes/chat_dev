@@ -4,9 +4,9 @@ import { createExpressEndpoints } from '@ts-rest/express';
 import { Contract } from '@./contract';
 import * as swaggerUi from 'swagger-ui-express';
 import { openApiDocument } from './libs/swagger';
-import { Controller } from './controllers';
 import morgan from 'morgan';
 import cors from 'cors';
+import { Router } from './router';
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -32,7 +32,7 @@ server.use(
 
 server.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiDocument));
 server.use('/docs.json', (req, res) => res.send(openApiDocument));
-createExpressEndpoints(Contract, Controller, server);
+createExpressEndpoints(Contract, Router, server);
 
 server.listen(PORT, () => {
   console.log(`Server is listening at PORT:${PORT}`);

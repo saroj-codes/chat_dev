@@ -46,8 +46,8 @@ model User {
 
 model Channel {
   id                         String    @id @default(cuid()) @map("_id")
-  user                       User      @relation(fields: [creator], references: [id])
-  creator                    String
+  user                       User      @relation(fields: [creator_Id], references: [id])
+  creator_Id                 String
   name                       String /// @zod.string.min(2, { message: "must be at least 2 characters" }).max(256, { message: "must be at most 256 characters" }).trim()
   isPublic                   Boolean
   max_number_of_participants Int
