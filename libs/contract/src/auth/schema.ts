@@ -25,4 +25,4 @@ export const LoginSchema = UserSchema.pick({
   password: true,
 });
 
-export type TLoginResponseSchema = z.infer<typeof LoginSchema>;
+export type TLoginSchema = z.infer<typeof LoginSchema>;
