@@ -18,6 +18,8 @@ export const RegisterSchema = UserSchema.pick({
 });
 export type TRegisterSchema = z.infer<typeof RegisterSchema>;
 
+export type TRegistrationSchema = z.infer<typeof RegisterSchema>;
+
 export const LoginSchema = UserSchema.pick({
   email: true,
   password: true,
