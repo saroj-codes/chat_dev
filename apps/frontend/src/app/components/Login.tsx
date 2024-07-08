@@ -157,9 +157,11 @@ export const Login = () => {
                     Remember me
                   </span>
                 </div>
-                <p className="text-[#8098F9] font-semibold text-[16px] cursor-pointer">
-                  Forgot Password?
-                </p>
+                <Link href={'/auth/resetPassword'}>
+                  <p className="text-[#8098F9] font-semibold text-[16px] cursor-pointer">
+                    Forgot Password?
+                  </p>
+                </Link>
               </div>
             </div>
             <div className="flex flex-col gap-[20px] pt-[25px]">

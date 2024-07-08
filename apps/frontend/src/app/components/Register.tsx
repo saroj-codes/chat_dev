@@ -23,7 +23,7 @@ const extendedResitrationSchema = RegisterSchema.extend({
   confirm_password: z.string(),
 }).refine((data) => data.password === data.confirm_password, {
   message: "Passwords don't match",
-  path: ['confirm_password'], // set path of error message
+  path: ['confirm_password'],
 });
 
 export const Register = () => {

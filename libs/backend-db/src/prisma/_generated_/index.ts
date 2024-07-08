@@ -16,6 +16,8 @@ export const ChannelScalarFieldEnumSchema = z.enum(['id','creator_Id','name','is
 
 export const MessageScalarFieldEnumSchema = z.enum(['id','channel_id','content','sender_id','created_at','updated_at']);
 
+export const OtpScalarFieldEnumSchema = z.enum(['id','email','otp_code']);
+
 export const SortOrderSchema = z.enum(['asc','desc']);
 
 export const QueryModeSchema = z.enum(['default','insensitive']);
@@ -68,6 +70,18 @@ export const MessageSchema = z.object({
 })
 
 export type Message = z.infer<typeof MessageSchema>
+
+/////////////////////////////////////////
+// OTP SCHEMA
+/////////////////////////////////////////
+
+export const OtpSchema = z.object({
+  id: z.string(),
+  email: z.string(),
+  otp_code: z.number(),
+})
+
+export type Otp = z.infer<typeof OtpSchema>
 
 /////////////////////////////////////////
 // MONGODB TYPES
