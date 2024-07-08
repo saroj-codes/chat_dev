@@ -29,7 +29,7 @@ export type TLoginSchema = z.infer<typeof LoginSchema>;
 
 export const ResetPasswordSchema = z.object({
   // token: z.string(),
-  email: z.string(),
+  email: z.string().optional(),
   new_password: z.string(),
 });
 export type TResetPasswordSchema = z.infer<typeof ResetPasswordSchema>;

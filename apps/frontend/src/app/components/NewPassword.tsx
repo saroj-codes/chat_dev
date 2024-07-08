@@ -15,8 +15,10 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToster } from '../hooks/useToster';
 import { ScaleLoader } from 'react-spinners';
+import { useRouter } from 'next/navigation';
 
 const NewPassword = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const { notify } = useToster();
 
@@ -49,6 +51,7 @@ const NewPassword = () => {
       {
         onSuccess: () => {
           notify('Password Changed Successfully', 'success');
+          router.push('/auth/login');
         },
         onError: () => {
           notify('Password Changed Failed', 'error');
