@@ -47,10 +47,10 @@ const NewPassword = () => {
       },
       {
         onSuccess: () => {
-          notify('OTP Verified', 'success');
+          notify('Password Changed Successfully', 'success');
         },
         onError: () => {
-          notify('OTP Verification Failed', 'error');
+          notify('Password Changed Failed', 'error');
         },
       }
     );

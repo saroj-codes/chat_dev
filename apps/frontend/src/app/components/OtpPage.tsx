@@ -4,8 +4,11 @@ import OtpInput from './Otp';
 import { api } from '../query-provider';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import { useToster } from '../hooks/useToster';
 
 const OtpPage = () => {
+  const { notify } = useToster();
+
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -25,10 +28,10 @@ const OtpPage = () => {
       {
         onSuccess: () => {
           router.push(`/auth/newPassword?email=${email}`);
-          console.log('OTP Verified');
+          notify('OTP Verified', 'success');
         },
         onError: (error) => {
-          console.log('Error Occured', error);
+          notify('OTP Verification Failed', 'error');
         },
       }
     );
