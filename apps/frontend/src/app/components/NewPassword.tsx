@@ -14,6 +14,7 @@ import {
 } from 'libs/contract/src/auth/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToster } from '../hooks/useToster';
+import { ScaleLoader } from 'react-spinners';
 
 const NewPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -97,8 +98,15 @@ const NewPassword = () => {
               </div>
             </div>
             <div className="flex flex-col gap-[20px] pt-[25px]">
-              <button className="py-3 bg-[#8098F9] text-center rounded-lg font-bold text-[17px] text-white cursor-pointer">
-                SUBMIT
+              <button
+                className="py-3 bg-[#8098F9] text-center rounded-lg font-bold text-[17px] text-white cursor-pointer"
+                type="submit"
+              >
+                {resetPassword.isPending ? (
+                  <ScaleLoader color="white" height={12} />
+                ) : (
+                  'SUBMIT'
+                )}
               </button>
             </div>
           </form>

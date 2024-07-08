@@ -5,6 +5,7 @@ import { api } from '../query-provider';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useToster } from '../hooks/useToster';
+import { ScaleLoader } from 'react-spinners';
 
 const OtpPage = () => {
   const { notify } = useToster();
@@ -56,7 +57,11 @@ const OtpPage = () => {
               className="py-3 bg-[#8098F9] text-center rounded-lg font-bold text-[17px] text-white cursor-pointer"
               onClick={handleVerifyOtp}
             >
-              SUBMIT
+              {verifyOtp.isPending ? (
+                <ScaleLoader color="white" height={12} />
+              ) : (
+                'SUBMIT'
+              )}
             </button>
             <span className="text-[16px] text-[#8098F9] text-center font-bold">
               Resent OTP
