@@ -13,4 +13,16 @@ export const AuthRouter = s.router(AuthContract, {
     middleware: [],
     handler: AuthMutationHandler.LoginUser,
   },
+  sentLinkToResetPassword: {
+    middleware: [],
+    handler: AuthMutationHandler.SentLinkToResetPassword,
+  },
+  handleResetPassword: {
+    middleware: [],
+    handler: AuthMutationHandler.ResetPassword,
+  },
+  verifyOtp: {
+    middleware: [],
+    handler: AuthMutationHandler.VerifyOtp,
+  },
 });

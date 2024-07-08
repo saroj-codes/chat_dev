@@ -72,6 +72,14 @@ model Message {
   @@map("messages")
 }
 
+model Otp {
+  id       String @id @default(cuid()) @map("_id")
+  email    String @unique
+  otp_code Int
+
+  @@map("otps")
+}
+
 // model ChannelParticipant {
 //   id         String   @id @default(cuid()) @map("_id")
 //   user_id    String
