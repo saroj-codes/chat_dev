@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev:backend": "npx nx run backend:serve",
+    "dev:backend ": "npx nx run backend:serve",
+    "build:backend": "npx nx run backend:build:production",
     "dev:frontend": "npx nx run frontend:dev",
+    "build:frontend": "nx run frontend:build:production",
+    "start:frontend": "next start",
     "db:push": "npx prisma db push --schema=./libs/backend-db/src/prisma/schema.prisma",
     "db:generate": "npx prisma generate --schema=./libs/backend-db/src/prisma/schema.prisma"
   },
