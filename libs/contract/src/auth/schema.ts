@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { UserSchema } from '@./backend-db';
+import { UserSchema } from '../__generated__';
 
 export const ErrorSchema = z.object({
   message: z.string(),

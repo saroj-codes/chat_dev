@@ -1,4 +1,4 @@
-import { ChannelSchema, MessageSchema, UserSchema } from '@./backend-db';
+import { ChannelSchema, MessageSchema, UserSchema } from '../__generated__';
 import { z } from 'zod';
 
 export const createMessageSchema = MessageSchema.pick({
