@@ -2,6 +2,7 @@ import { Poppins } from 'next/font/google';
 import './global.css';
 import { QueryProvider } from './query-provider';
 import { Toaster } from 'sonner';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -24,7 +25,7 @@ export default function RootLayout({
       <body className={`${poppins.className}`}>
         <QueryProvider>
           <Toaster position="top-right" richColors />
-          {children}
+          <ChakraProvider>{children}</ChakraProvider>
         </QueryProvider>
       </body>
     </html>
