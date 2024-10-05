@@ -112,8 +112,8 @@ export const Register = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col gap-4 justify-center items-center">
-      <div className="flex gap-[25px] flex-col w-[55%]">
+    <div className="w-full  flex flex-col gap-4 justify-center items-center">
+      <div className="flex gap-[25px] flex-col">
         <div>
           <h1 className="text-[#09090B] text-[30px] font-bold">
             Create your Account
@@ -216,7 +216,7 @@ export const Register = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <div className="flex items-center gap-[10px]">
                 <input type="checkbox" />
                 <span className="text-[#71717A] text-[16px]">
@@ -224,7 +224,7 @@ export const Register = () => {
                   <span className="text-[#8098F9]">terms and conditions</span>
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col gap-[20px] pt-[25px]">
             <button className="py-3 bg-[#8098F9] text-center rounded-lg font-bold text-[17px] text-white cursor-pointer">

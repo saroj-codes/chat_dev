@@ -18,6 +18,13 @@ export const RegisterSchema = UserSchema.pick({
 });
 export type TRegisterSchema = z.infer<typeof RegisterSchema>;
 
+export const UserDataSchema = UserSchema.pick({
+  id: true,
+  user_name: true,
+  email: true,
+});
+export type TUserDataSchema = z.infer<typeof UserDataSchema>;
+
 export type TRegistrationSchema = z.infer<typeof RegisterSchema>;
 
 export const LoginSchema = UserSchema.pick({
@@ -28,7 +35,6 @@ export const LoginSchema = UserSchema.pick({
 export type TLoginSchema = z.infer<typeof LoginSchema>;
 
 export const ResetPasswordSchema = z.object({
-  // token: z.string(),
   email: z.string().optional(),
   new_password: z.string(),
 });

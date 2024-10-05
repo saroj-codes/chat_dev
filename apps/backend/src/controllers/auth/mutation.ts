@@ -4,6 +4,9 @@ import { comparePassword, hashPassword } from '../../services/auth';
 import { db } from '@./backend-db';
 import { AppRouteImplementationOrOptions } from '@ts-rest/express/src/lib/types';
 import { SendEmail } from '../../services/email';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const RegisterUser: AppRouteImplementationOrOptions<
   typeof AuthContract.RegisterUser
@@ -38,7 +41,7 @@ const RegisterUser: AppRouteImplementationOrOptions<
 
 const LoginUser: AppRouteImplementationOrOptions<
   typeof AuthContract.LoginUser
-> = async ({ body }) => {
+> = async ({ body, res }) => {
   try {
     const UserExist = await db.user.findUnique({
       where: {
@@ -67,6 +70,28 @@ const LoginUser: AppRouteImplementationOrOptions<
         },
       };
     }
+    const refreshToken = jwt.sign({ email: UserExist.email }, JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
+    const accessToken = jwt.sign({ email: UserExist.email }, JWT_SECRET, {
+      expiresIn: '5m',
+    });
+
+    res.cookie('saroj-x-access-token', accessToken, {
+      maxAge: 1000 * 60 * 5, // expire after 15 minutes
+      httpOnly: true, // Cookie will not be exposed to client side code
+      secure: true, // use with HTTPS only
+      sameSite: 'none',
+    });
+
+    res.cookie('saroj-x-refresh-token', refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // expire after 15 minutes
+      httpOnly: true, // Cookie will not be exposed to client side code
+      secure: true, // use with HTTPS only
+      sameSite: 'none',
+    });
+
     return {
       status: StatusCodes.OK,
       body: {

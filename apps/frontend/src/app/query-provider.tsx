@@ -5,7 +5,7 @@ import { Contract } from '@./contract';
 
 export const api = initQueryClient(Contract, {
   baseUrl: 'http://localhost:8080',
-
+  credentials: 'include',
   baseHeaders: {},
 });
 const qc = new QueryClient();

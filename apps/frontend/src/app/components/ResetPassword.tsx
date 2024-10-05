@@ -37,8 +37,8 @@ const ResetPassword = () => {
     );
   };
   return (
-    <div className="w-full h-screen flex flex-col gap-4 justify-center items-center">
-      <div className="flex gap-[25px] flex-col w-[55%]">
+    <div className="w-full flex flex-col gap-4 justify-center items-center">
+      <div className="flex gap-[25px] flex-col">
         <div>
           <h1 className="text-[#09090B] text-[30px] font-bold">
             Forget your password?

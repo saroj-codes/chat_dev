@@ -7,14 +7,17 @@ import { openApiDocument } from './libs/swagger';
 import morgan from 'morgan';
 import cors from 'cors';
 import { Router } from './router';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const PORT = process.env.PORT;
 
 const server = express();
+server.use(cookieParser());
 server.use(express.json());
 server.use(morgan('common'));
 server.use(express.json());
+
 const whitelistedOrigins = process.env.WHITELISTED_ORIGINS
   ? process.env.WHITELISTED_ORIGINS.split(',')
   : [];
@@ -27,6 +30,7 @@ server.use(
         callback(new Error('Not allowed by CORS'));
       }
     },
+    credentials: true,
   })
 );
 

@@ -2,24 +2,25 @@ import { ChannelContract } from '@./contract';
 import { initServer } from '@ts-rest/express';
 import { ChannelMutationHandler } from './mutation';
 import { ChannelQueryHandler } from './query';
+import { VerifyAccessToken } from '../../middlewares/token';
 
 const s = initServer();
 
 export const ChannelRouter = s.router(ChannelContract, {
   createChannel: {
-    middleware: [],
+    middleware: [VerifyAccessToken],
     handler: ChannelMutationHandler.createChannel,
   },
   getChannel: {
-    middleware: [],
+    middleware: [VerifyAccessToken],
     handler: ChannelQueryHandler.getChannel,
   },
   getChannelById: {
-    middleware: [],
+    middleware: [VerifyAccessToken],
     handler: ChannelQueryHandler.getChannelById,
   },
   getPublicChannel: {
-    middleware: [],
+    middleware: [VerifyAccessToken],
     handler: ChannelQueryHandler.getPublicChannel,
   },
 });

@@ -40,7 +40,7 @@ const OtpPage = () => {
 
   return (
     <>
-      <div className="w-full h-screen flex flex-col gap-4 justify-center items-center">
+      <div className="w-full flex flex-col gap-4 justify-center items-center">
         <div className="flex gap-[25px] flex-col">
           <div>
             <h1 className="text-[#09090B] text-[30px] font-bold">Enter OTP</h1>
@@ -63,9 +63,9 @@ const OtpPage = () => {
                 'SUBMIT'
               )}
             </button>
-            <span className="text-[16px] text-[#8098F9] text-center font-bold">
+            {/* <span className="text-[16px] text-[#8098F9] text-center font-bold">
               Resent OTP
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

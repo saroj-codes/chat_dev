@@ -5,6 +5,7 @@ import {
   RegisterSchema,
   ResetPasswordSchema,
   SuccessSchema,
+  UserDataSchema,
 } from './schema';
 import { z } from 'zod';
 
@@ -72,5 +73,15 @@ export const AuthContract = c.router({
       500: ErrorSchema,
     },
     summary: 'This API is used to verify OTP code',
+  },
+  verifyUser: {
+    method: 'GET',
+    path: '/auth/verifyUser',
+    responses: {
+      200: UserDataSchema,
+      401: ErrorSchema,
+      404: ErrorSchema,
+      500: ErrorSchema,
+    },
   },
 });
