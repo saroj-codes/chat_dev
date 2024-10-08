@@ -4,7 +4,7 @@ import { initQueryClient } from '@ts-rest/react-query';
 import { Contract } from '@./contract';
 
 export const api = initQueryClient(Contract, {
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'https://backend-chat-bc.onrender.com',
   credentials: 'include',
   baseHeaders: {},
 });

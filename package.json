@@ -5,8 +5,8 @@
   "scripts": {
     "dev:backend": "npx nx run backend:serve",
     "dev:frontend": "npx nx run frontend:dev",
-    "db:push": "npx prisma db push --schema=./libs/backend-db/src/prisma/schema.prisma",
-    "db:generate": "npx prisma generate --schema=./libs/backend-db/src/prisma/schema.prisma"
+    "db:push": "npx prisma db push --schema=./libs/backend-db/prisma/schema.prisma",
+    "db:generate": "npx prisma generate --schema=./libs/backend-db/prisma/schema.prisma"
   },
   "private": true,
   "dependencies": {
