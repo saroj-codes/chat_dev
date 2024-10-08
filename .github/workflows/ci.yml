@@ -13,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
-      # - name: Build docker image - frontend
-      #   run: |
-      #     docker buildx build -t frontend-chat-7 -f ./apps/frontend/Dockerfile .
+      - name: Build docker image - frontend
+        run: |
+          docker buildx build -t frontend-chat-7 -f ./apps/frontend/Dockerfile .
 
       - name: Build docker image - backend
         run: |
           docker buildx build -t backend-chat-7 -f ./apps/backend/Dockerfile .
 
-      # - name: Push docker image to docker hub - frontend
-      #   run: docker push sarojgg/frontend-chat:fc
+      - name: Push docker image to docker hub - frontend
+        run: docker push sarojgg/chat-frontend:latest
 
       - name: Push docker image to docker hub - backend
         run: docker push sarojgg/chat-backend:latest
