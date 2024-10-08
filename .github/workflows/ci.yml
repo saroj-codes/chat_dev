@@ -15,11 +15,11 @@ jobs:
       - run: echo "${{secrets.DOCKERHUB_PASSWORD}}" | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin
       - name: Build docker image - frontend
         run: |
-          docker buildx build -t frontend-chat-5 -f ./apps/frontend/Dockerfile .
+          docker buildx build -t frontend-chat-5:fc -f ./apps/frontend/Dockerfile .
 
       - name: Build docker image - backend
         run: |
-          docker buildx build -t backend-chat-6 -f ./apps/backend/Dockerfile .
+          docker buildx build -t backend-chat-6:bc -f ./apps/backend/Dockerfile .
 
       - name: Push docker image to docker hub - frontend
         run: docker push sarojgg/frontend-chat:fc
