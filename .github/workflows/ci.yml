@@ -22,7 +22,7 @@ jobs:
           docker buildx build -t backend-chat-6 -f ./apps/backend/Dockerfile .
 
       - name: Push docker image to docker hub - frontend
-        run: docker push sarojgg/frontend-chat:fc
+        run: docker push sarojgg/frontend-chat-5
 
       - name: Push docker image to docker hub - backend
-        run: docker push sarojgg/backend-chat:bc
+        run: docker push sarojgg/backend-chat-6
